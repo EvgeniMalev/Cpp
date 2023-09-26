@@ -1,0 +1,50 @@
+#include <Arduino.h>
+
+int potentiometer_pin = A0;
+int pwm_pin1 = 3;  
+int pwm_pin2 = 4;  
+int voltagereference_pin = A1;  
+
+void setup() {
+  pinMode(voltagereference_pin, INPUT);
+  pinMode(pwm_pin1, OUTPUT);
+  pinMode(pwm_pin2, OUTPUT);
+
+  // Set the PWM frequency for pins 3 and 4
+  TCCR2B = TCCR2B & B11111000 | B00000011;
+}
+
+void loop() {
+  int duty_cycle = analogRead(potentiometer_pin);
+
+  // Map the duty cycle from the potentiometer to a range of 0-254 (8-bit PWM)
+  int duty_cycle_mapped = map(duty_cycle, 0, 1023, 0, 254);
+
+  // Apply the duty cycle to both PWM pins
+  analogWrite(pwm_pin1, duty_cycle_mapped);
+  analogWrite(pwm_pin2, duty_cycle_mapped);
+}
+Here are the changes and explanations:
+
+Defined pwm_pin1 and pwm_pin2 to specify which pins you are using for PWM.
+
+Defined voltagereference_pin for the voltage reference pin (you need to specify the pin number correctly).
+
+Adjusted the map function to map from 0-1023 (the range of analogRead on Arduino) to 0-254 (as you're using an 8-bit PWM, which has a range of 0-255).
+
+Corrected the comments for pin assignments.
+
+Please make sure to double-check that you're using the correct pin numbers and that they correspond to the physical pins on your Arduino board.
+
+
+
+
+User
+Thank You best wishes!
+ChatGPT
+You're welcome! If you have any more questions in the future, feel free to ask. Best wishes to you too, and have a great day!
+
+
+
+
+
