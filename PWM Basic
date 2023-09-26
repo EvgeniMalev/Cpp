@@ -1,0 +1,10 @@
+int PWM_Pin1 = 3;
+int PWM_Pin2 = 4;
+void setup() {
+   pinMode(PWM_Pin1,OUTPUT); 
+   pinMode(PWM_Pin2,OUTPUT); 
+  }
+void loop() {
+    analogWrite(PWM_Pin1,127);
+	analogWrite(PWM_Pin2,127);
+}
