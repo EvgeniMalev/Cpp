@@ -1,0 +1,24 @@
+const int lm318OutputPin = A0;
+const int lm318OutputPin1 = A1;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lm318Value = analogRead(lm318OutputPin);
+  int lm318Value1 = analogRead(lm318OutputPin1);
+
+  float voltage = (lm318Value / 1023.0) * 5.0;   // Assuming 5V reference voltage
+  float current = (lm318Value1 / 1023.0) * 1.5; // Assuming 1.5A full-scale current
+
+  Serial.print("LM318 Voltage: ");
+  Serial.print(voltage, 2); // Print with 2 decimal places
+  Serial.println(" V");
+
+  Serial.print("LM318 Current: ");
+  Serial.print(current, 2); // Print with 2 decimal places
+  Serial.println(" A");
+
+  delay(1000);
+}
